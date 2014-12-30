@@ -20,6 +20,7 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessName")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessIdentifier")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessorCount")
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getHostName")
     }
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
@@ -32,6 +33,10 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             break
         case "getProcessorCount":
             message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().processorCount))", completionHandler: nil)
+            break
+        case "getHostName":
+            message.webView?.evaluateJavaScript("console.log('\(NSProcessInfo.processInfo().hostName)')", completionHandler: nil)
+            break
         default:
             break
         }
