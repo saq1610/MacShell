@@ -85,7 +85,6 @@
 		17D915CC1A51D434007DDB2B /* MacShell */ = {
 			isa = PBXGroup;
 			children = (
-				17D9165A1A52000C007DDB2B /* API */,
 				17D915F41A51E429007DDB2B /* Application */,
 				17D915CF1A51D434007DDB2B /* AppDelegate.swift */,
 				17D915D11A51D434007DDB2B /* ViewController.swift */,
@@ -132,13 +131,6 @@
 				17D915F71A51E4DF007DDB2B /* macshell.css */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		17D9165A1A52000C007DDB2B /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
