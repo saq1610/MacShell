@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>432306D9-3992-46F1-BC43-0569D61F69AC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MacShell</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8D64468507BCC970487B0C42EFB12A5D10A96742</key>
+		<string>https://github.com/lusbuab/MacShell.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MacShell.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8D64468507BCC970487B0C42EFB12A5D10A96742</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/lusbuab/MacShell.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8D64468507BCC970487B0C42EFB12A5D10A96742</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8D64468507BCC970487B0C42EFB12A5D10A96742</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MacShell</string>
+		</dict>
+	</array>
+</dict>
+</plist>
