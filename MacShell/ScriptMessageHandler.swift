@@ -27,6 +27,10 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getPhysicalMemory")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getSystemUptime")
         
+        // Workspace API
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getRunningApplications")
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "hideOtherApplications")
+        
         // Dock API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "setDockTileBadge")
         
@@ -62,6 +66,27 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             break
         case "getSystemUptime":
             message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().systemUptime))", completionHandler: nil)
+            break
+        
+        case "getRunningApplications":
+            var runningApps = NSWorkspace.sharedWorkspace().runningApplications
+            var result = "["
+            var appNumber = 0
+            for runningApp in runningApps {
+                if appNumber > 0 { result += "," }
+                appNumber++
+                result += "{"
+                result += "\"name\":\"\((runningApp as NSRunningApplication).localizedName!)\","
+                result += "\"bundleUrl\":\"\((runningApp as NSRunningApplication).bundleURL!)\","
+                result += "\"pid\":\((runningApp as NSRunningApplication).processIdentifier),"
+                result += "\"bundleIdentifier\":\"\((runningApp as NSRunningApplication).bundleIdentifier!)\""
+                result += "}"
+            }
+            result += "]"
+            message.webView?.evaluateJavaScript("console.log(JSON.parse('\(result)'))", completionHandler: nil)
+            break
+        case "hideOtherApplications":
+            NSWorkspace.sharedWorkspace().hideOtherApplications()
             break
         
         case "setDockTileBadge":
