@@ -17,10 +17,16 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
     }
     
     func publishAPIToWebView() {
+        // ProcessInfo API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessName")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessIdentifier")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessorCount")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getHostName")
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getOperatingSystemVersion")
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getPhysicalMemory")
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getSystemUptime")
+        
+        // User API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getUserName")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getFullUserName")
     }
@@ -39,6 +45,18 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         case "getHostName":
             message.webView?.evaluateJavaScript("console.log('\(NSProcessInfo.processInfo().hostName)')", completionHandler: nil)
             break
+        case "getOperatingSystemVersion":
+            var osVersion = NSProcessInfo.processInfo().operatingSystemVersion
+            var osVersionString = "{\"major\":\(osVersion.majorVersion),\"minor\":\(osVersion.minorVersion),\"patch\":\(osVersion.patchVersion)}";
+            message.webView?.evaluateJavaScript("console.log(JSON.parse('\(osVersionString)'))", completionHandler: nil)
+            break;
+        case "getPhysicalMemory":
+            message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().physicalMemory))", completionHandler: nil)
+            break
+        case "getSystemUptime":
+            message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().systemUptime))", completionHandler: nil)
+            break
+            
         case "getUserName":
             message.webView?.evaluateJavaScript("console.log('\(NSUserName())')", completionHandler: nil)
             break
