@@ -26,7 +26,10 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getOperatingSystemVersion")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getPhysicalMemory")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getSystemUptime")
-                
+        
+        // Dock API
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "setDockTileBadge")
+        
         // User API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getUserName")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getFullUserName")
@@ -59,6 +62,10 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             break
         case "getSystemUptime":
             message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().systemUptime))", completionHandler: nil)
+            break
+        
+        case "setDockTileBadge":
+            NSApplication.sharedApplication().dockTile.badgeLabel = ((message.body as NSDictionary).valueForKey("label") as String)
             break
             
         case "getUserName":
