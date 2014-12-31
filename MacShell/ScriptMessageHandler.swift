@@ -21,11 +21,12 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessName")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessIdentifier")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessorCount")
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getActiveProcessorCount")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getHostName")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getOperatingSystemVersion")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getPhysicalMemory")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getSystemUptime")
-        
+                
         // User API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getUserName")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getFullUserName")
@@ -41,6 +42,9 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             break
         case "getProcessorCount":
             message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().processorCount))", completionHandler: nil)
+            break
+        case "getActiveProcessorCount":
+            message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().activeProcessorCount))", completionHandler: nil)
             break
         case "getHostName":
             message.webView?.evaluateJavaScript("console.log('\(NSProcessInfo.processInfo().hostName)')", completionHandler: nil)
