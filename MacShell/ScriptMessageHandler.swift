@@ -30,7 +30,7 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         // Workspace API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getRunningApplications")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "hideOtherApplications")
-        
+                
         // Dock API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "setDockTileBadge")
         
