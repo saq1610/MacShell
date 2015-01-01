@@ -11,7 +11,7 @@ import WebKit
 
 class Workspace: NSObject, APIPackage {
     
-    class func registerMethod(handler: WKScriptMessageHandler, webView: WKWebView) {
+    class func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getRunningApplications")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "hideOtherApplications")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "launchApplication")

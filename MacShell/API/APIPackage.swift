@@ -10,6 +10,6 @@ import Foundation
 import WebKit
 
 protocol APIPackage {
-    class func registerMethod(handler: WKScriptMessageHandler, webView: WKWebView)
+    class func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView)
     class func processMessage(message: WKScriptMessage)
 }

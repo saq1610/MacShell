@@ -17,11 +17,9 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
     }
     
     func publishAPIToWebView() {
-        // ProcessInfo API
-        ProcessInfo.registerMethod(self, webView: self.webView)
-        
-        // Workspace API
-        Workspace.registerMethod(self, webView: self.webView)
+        CurrentUser.registerMethods(self, webView: self.webView)
+        ProcessInfo.registerMethods(self, webView: self.webView)
+        Workspace.registerMethods(self, webView: self.webView)
         
         // UserDefaults API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "setUserDefault")
@@ -31,8 +29,7 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "setDockTileBadge")
         
         // User API
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getUserName")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getFullUserName")
+        
         
         // FileSystem API
         
@@ -88,13 +85,9 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             NSApplication.sharedApplication().dockTile.badgeLabel = ((message.body as NSDictionary).valueForKey("label") as String)
             break
             
-        case "getUserName":
-            message.webView?.evaluateJavaScript("console.log('\(NSUserName())')", completionHandler: nil)
-            break
-        case "getFullUserName":
-            message.webView?.evaluateJavaScript("console.log('\(NSFullUserName())')", completionHandler: nil)
-            break
+        
         default:
+            CurrentUser.processMessage(message)
             ProcessInfo.processMessage(message)
             Workspace.processMessage(message)
             break

@@ -19,6 +19,7 @@
 		17E5DFD51A55B99F000E37ED /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5DFD41A55B99F000E37ED /* Workspace.swift */; };
 		17E5DFD71A55BACA000E37ED /* APIPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5DFD61A55BACA000E37ED /* APIPackage.swift */; };
 		17E5DFD91A55BC2C000E37ED /* ProcessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5DFD81A55BC2C000E37ED /* ProcessInfo.swift */; };
+		17E5DFDB1A55BD78000E37ED /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5DFDA1A55BD78000E37ED /* CurrentUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		17E5DFD41A55B99F000E37ED /* Workspace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Workspace.swift; path = API/Workspace.swift; sourceTree = "<group>"; };
 		17E5DFD61A55BACA000E37ED /* APIPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPackage.swift; path = API/APIPackage.swift; sourceTree = "<group>"; };
 		17E5DFD81A55BC2C000E37ED /* ProcessInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProcessInfo.swift; path = API/ProcessInfo.swift; sourceTree = "<group>"; };
+		17E5DFDA1A55BD78000E37ED /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUser.swift; path = API/CurrentUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				17E5DFD61A55BACA000E37ED /* APIPackage.swift */,
+				17E5DFDA1A55BD78000E37ED /* CurrentUser.swift */,
 				17E5DFD81A55BC2C000E37ED /* ProcessInfo.swift */,
 				17E5DFD41A55B99F000E37ED /* Workspace.swift */,
 			);
@@ -257,6 +260,7 @@
 				17E5DFD91A55BC2C000E37ED /* ProcessInfo.swift in Sources */,
 				17E5DFD71A55BACA000E37ED /* APIPackage.swift in Sources */,
 				17D915D21A51D434007DDB2B /* ViewController.swift in Sources */,
+				17E5DFDB1A55BD78000E37ED /* CurrentUser.swift in Sources */,
 				17D915D01A51D434007DDB2B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

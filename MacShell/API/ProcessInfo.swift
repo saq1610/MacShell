@@ -10,7 +10,7 @@ import Foundation
 import WebKit
 
 class ProcessInfo: NSObject, APIPackage {
-    class func registerMethod(handler: WKScriptMessageHandler, webView: WKWebView) {
+    class func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getProcessName")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getProcessIdentifier")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getProcessorCount")
