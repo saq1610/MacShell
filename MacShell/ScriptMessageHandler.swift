@@ -26,6 +26,7 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getOperatingSystemVersion")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getPhysicalMemory")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getSystemUptime")
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getGloballyUniqueString")
         
         // Workspace API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getRunningApplications")
@@ -68,6 +69,10 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().systemUptime))", completionHandler: nil)
             break
         
+        case "getGloballyUniqueString":
+            message.webView?.evaluateJavaScript("console.log('\(NSProcessInfo.processInfo().globallyUniqueString)')", completionHandler: nil)
+            break
+            
         case "getRunningApplications":
             var runningApps = NSWorkspace.sharedWorkspace().runningApplications
             var result = "["
