@@ -129,7 +129,12 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             message.webView?.evaluateJavaScript("console.log('\(result)')", completionHandler: nil)
             break
         case "setUserDefault":
-            println("todo")
+            var info = message.body as NSDictionary
+            var type: AnyObject? = info.valueForKey("type")
+            var key: String = info.valueForKey("key") as String
+            var value: AnyObject? = info.valueForKey("value")
+            var result: String?
+            NSUserDefaults.standardUserDefaults().setValue(value, forKey: key)
             break
         
         case "setDockTileBadge":
