@@ -33,6 +33,9 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "hideOtherApplications")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "launchApplication")
         
+        // UserDefaults API
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "setUserDefault")
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getUserDefault")
         
         // Dock API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "setDockTileBadge")
@@ -97,6 +100,36 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             break
         case "launchApplication":
             NSWorkspace.sharedWorkspace().launchApplication(message.body as String)
+            break
+            
+        case "getUserDefault":
+            var info = message.body as NSDictionary
+            var type: AnyObject? = info.valueForKey("type")
+            var key: String = info.valueForKey("key") as String
+            var result: String?
+            switch (type as String) {
+                case "bool":
+                    result = NSUserDefaults.standardUserDefaults().boolForKey(key).description
+                    break
+                case "double":
+                    result = NSUserDefaults.standardUserDefaults().doubleForKey(key).description
+                    break
+                case "dictionary":
+                    result = NSUserDefaults.standardUserDefaults().dictionaryForKey(key)?.description
+                    break
+                case "int":
+                    result = NSUserDefaults.standardUserDefaults().integerForKey(key).description
+                    break
+                case "string":
+                    result = NSUserDefaults.standardUserDefaults().stringForKey(key)
+                    break
+                default:
+                    break
+            }
+            message.webView?.evaluateJavaScript("console.log('\(result)')", completionHandler: nil)
+            break
+        case "setUserDefault":
+            println("todo")
             break
         
         case "setDockTileBadge":
