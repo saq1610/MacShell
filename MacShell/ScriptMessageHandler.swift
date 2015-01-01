@@ -18,20 +18,10 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
     
     func publishAPIToWebView() {
         // ProcessInfo API
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessName")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessIdentifier")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getProcessorCount")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getActiveProcessorCount")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getHostName")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getOperatingSystemVersion")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getPhysicalMemory")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getSystemUptime")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getGloballyUniqueString")
+        ProcessInfo.registerMethod(self, webView: self.webView)
         
         // Workspace API
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getRunningApplications")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "hideOtherApplications")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "launchApplication")
+        Workspace.registerMethod(self, webView: self.webView)
         
         // UserDefaults API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "setUserDefault")
@@ -43,63 +33,20 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         // User API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getUserName")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getFullUserName")
+        
+        // FileSystem API
+        
+        // Menu API
+        
+        // Tray API
     }
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         switch (message.name) {
-        case "getProcessName":
-            message.webView?.evaluateJavaScript("console.log('\(NSProcessInfo.processInfo().processName)')", completionHandler: nil)
-            break
-        case "getProcessIdentifier":
-            message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().processIdentifier))", completionHandler: nil)
-            break
-        case "getProcessorCount":
-            message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().processorCount))", completionHandler: nil)
-            break
-        case "getActiveProcessorCount":
-            message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().activeProcessorCount))", completionHandler: nil)
-            break
-        case "getHostName":
-            message.webView?.evaluateJavaScript("console.log('\(NSProcessInfo.processInfo().hostName)')", completionHandler: nil)
-            break
-        case "getOperatingSystemVersion":
-            var osVersion = NSProcessInfo.processInfo().operatingSystemVersion
-            var osVersionString = "{\"major\":\(osVersion.majorVersion),\"minor\":\(osVersion.minorVersion),\"patch\":\(osVersion.patchVersion)}";
-            message.webView?.evaluateJavaScript("console.log(JSON.parse('\(osVersionString)'))", completionHandler: nil)
-            break;
-        case "getPhysicalMemory":
-            message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().physicalMemory))", completionHandler: nil)
-            break
-        case "getSystemUptime":
-            message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().systemUptime))", completionHandler: nil)
-            break
+        
         
         case "getGloballyUniqueString":
             message.webView?.evaluateJavaScript("console.log('\(NSProcessInfo.processInfo().globallyUniqueString)')", completionHandler: nil)
-            break
-            
-        case "getRunningApplications":
-            var runningApps = NSWorkspace.sharedWorkspace().runningApplications
-            var result = "["
-            var appNumber = 0
-            for runningApp in runningApps {
-                if appNumber > 0 { result += "," }
-                appNumber++
-                result += "{"
-                result += "\"name\":\"\((runningApp as NSRunningApplication).localizedName!)\","
-                result += "\"bundleUrl\":\"\((runningApp as NSRunningApplication).bundleURL!)\","
-                result += "\"pid\":\((runningApp as NSRunningApplication).processIdentifier),"
-                result += "\"bundleIdentifier\":\"\((runningApp as NSRunningApplication).bundleIdentifier!)\""
-                result += "}"
-            }
-            result += "]"
-            message.webView?.evaluateJavaScript("console.log(JSON.parse('\(result)'))", completionHandler: nil)
-            break
-        case "hideOtherApplications":
-            NSWorkspace.sharedWorkspace().hideOtherApplications()
-            break
-        case "launchApplication":
-            NSWorkspace.sharedWorkspace().launchApplication(message.body as String)
             break
             
         case "getUserDefault":
@@ -148,6 +95,8 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             message.webView?.evaluateJavaScript("console.log('\(NSFullUserName())')", completionHandler: nil)
             break
         default:
+            ProcessInfo.processMessage(message)
+            Workspace.processMessage(message)
             break
         }
     }
