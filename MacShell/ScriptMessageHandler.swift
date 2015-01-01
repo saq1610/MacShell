@@ -31,7 +31,9 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         // Workspace API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "getRunningApplications")
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "hideOtherApplications")
-                
+        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "launchApplication")
+        
+        
         // Dock API
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "setDockTileBadge")
         
@@ -92,6 +94,9 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
             break
         case "hideOtherApplications":
             NSWorkspace.sharedWorkspace().hideOtherApplications()
+            break
+        case "launchApplication":
+            NSWorkspace.sharedWorkspace().launchApplication(message.body as String)
             break
         
         case "setDockTileBadge":
