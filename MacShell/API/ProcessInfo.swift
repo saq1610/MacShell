@@ -50,6 +50,9 @@ class ProcessInfo: NSObject, APIPackage {
         case "getSystemUptime":
             message.webView?.evaluateJavaScript("console.log(\(NSProcessInfo.processInfo().systemUptime))", completionHandler: nil)
             break
+        case "getGloballyUniqueString":
+            message.webView?.evaluateJavaScript("console.log('\(NSProcessInfo.processInfo().globallyUniqueString)')", completionHandler: nil)
+            break
         default:
             break
         }

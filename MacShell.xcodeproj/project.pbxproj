@@ -20,6 +20,8 @@
 		17E5DFD71A55BACA000E37ED /* APIPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5DFD61A55BACA000E37ED /* APIPackage.swift */; };
 		17E5DFD91A55BC2C000E37ED /* ProcessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5DFD81A55BC2C000E37ED /* ProcessInfo.swift */; };
 		17E5DFDB1A55BD78000E37ED /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5DFDA1A55BD78000E37ED /* CurrentUser.swift */; };
+		17F1966F1A5692EA00733ADB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1966E1A5692EA00733ADB /* UserDefaults.swift */; };
+		17F196711A56938900733ADB /* Dock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F196701A56938900733ADB /* Dock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		17E5DFD61A55BACA000E37ED /* APIPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPackage.swift; path = API/APIPackage.swift; sourceTree = "<group>"; };
 		17E5DFD81A55BC2C000E37ED /* ProcessInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProcessInfo.swift; path = API/ProcessInfo.swift; sourceTree = "<group>"; };
 		17E5DFDA1A55BD78000E37ED /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUser.swift; path = API/CurrentUser.swift; sourceTree = "<group>"; };
+		17F1966E1A5692EA00733ADB /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = API/UserDefaults.swift; sourceTree = "<group>"; };
+		17F196701A56938900733ADB /* Dock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dock.swift; path = API/Dock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +152,9 @@
 				17E5DFD61A55BACA000E37ED /* APIPackage.swift */,
 				17E5DFDA1A55BD78000E37ED /* CurrentUser.swift */,
 				17E5DFD81A55BC2C000E37ED /* ProcessInfo.swift */,
+				17F1966E1A5692EA00733ADB /* UserDefaults.swift */,
 				17E5DFD41A55B99F000E37ED /* Workspace.swift */,
+				17F196701A56938900733ADB /* Dock.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 				17E5DFD51A55B99F000E37ED /* Workspace.swift in Sources */,
 				17E5DFD91A55BC2C000E37ED /* ProcessInfo.swift in Sources */,
 				17E5DFD71A55BACA000E37ED /* APIPackage.swift in Sources */,
+				17F1966F1A5692EA00733ADB /* UserDefaults.swift in Sources */,
 				17D915D21A51D434007DDB2B /* ViewController.swift in Sources */,
 				17E5DFDB1A55BD78000E37ED /* CurrentUser.swift in Sources */,
+				17F196711A56938900733ADB /* Dock.swift in Sources */,
 				17D915D01A51D434007DDB2B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
