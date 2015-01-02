@@ -11,13 +11,13 @@ import WebKit
 
 class Workspace: NSObject, APIPackage {
     
-    class func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
+    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getRunningApplications")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "hideOtherApplications")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "launchApplication")
     }
     
-    class func processMessage(message: WKScriptMessage) {
+    func processMessage(message: WKScriptMessage) {
         switch (message.name) {
         case "getRunningApplications":
             var runningApps = NSWorkspace.sharedWorkspace().runningApplications

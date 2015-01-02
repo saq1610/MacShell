@@ -10,7 +10,7 @@ import Foundation
 import WebKit
 
 class ProcessInfo: NSObject, APIPackage {
-    class func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
+    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getProcessName")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getProcessIdentifier")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getProcessorCount")
@@ -22,7 +22,7 @@ class ProcessInfo: NSObject, APIPackage {
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getGloballyUniqueString")
     }
     
-    class func processMessage(message: WKScriptMessage) {
+    func processMessage(message: WKScriptMessage) {
         switch (message.name) {
         case "getProcessName":
             message.webView?.evaluateJavaScript("console.log('\(NSProcessInfo.processInfo().processName)')", completionHandler: nil)

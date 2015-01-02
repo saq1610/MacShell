@@ -10,12 +10,12 @@ import Foundation
 import WebKit
 
 class CurrentUser: NSObject, APIPackage {
-    class func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
+    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getUserName")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getFullUserName")
     }
     
-    class func processMessage(message: WKScriptMessage) {
+    func processMessage(message: WKScriptMessage) {
         switch (message.name) {
         case "getUserName":
             message.webView?.evaluateJavaScript("console.log('\(NSUserName())')", completionHandler: nil)

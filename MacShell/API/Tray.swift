@@ -10,11 +10,11 @@ import Foundation
 import WebKit
 
 class Tray: NSObject, APIPackage {
-    class func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
+    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
         
     }
     
-    class func processMessage(message: WKScriptMessage) {
+    func processMessage(message: WKScriptMessage) {
         
     }
 }

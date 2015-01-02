@@ -12,26 +12,30 @@ import WebKit
 class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
     var webView: WKWebView!
     
+    var apiPackages: [APIPackage] = [
+        CurrentUser(),
+        Dock(),
+        FileSystem(),
+        Menu(),
+        ProcessInfo(),
+        Tray(),
+        UserDefaults(),
+        Workspace()
+    ]
+    
     init(webView: WKWebView!) {
         self.webView = webView
     }
     
     func publishAPIToWebView() {
-        CurrentUser.registerMethods(self, webView: self.webView)
-        Dock.registerMethods(self, webView: self.webView)
-        FileSystem.registerMethods(self, webView: self.webView)
-        Menu.registerMethods(self, webView: self.webView)
-        ProcessInfo.registerMethods(self, webView: self.webView)
-        UserDefaults.registerMethods(self, webView: self.webView)
-        Tray.registerMethods(self, webView: self.webView)
-        Workspace.registerMethods(self, webView: self.webView)
+        for apiPackage in apiPackages {
+            apiPackage.registerMethods(self, webView: self.webView)
+        }
     }
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
-        CurrentUser.processMessage(message)
-        ProcessInfo.processMessage(message)
-        UserDefaults.processMessage(message)
-        Workspace.processMessage(message)
+        for apiPackage in apiPackages {
+            apiPackage.processMessage(message)
+        }
     }
-    
 }
