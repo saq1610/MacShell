@@ -19,11 +19,12 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
     func publishAPIToWebView() {
         CurrentUser.registerMethods(self, webView: self.webView)
         Dock.registerMethods(self, webView: self.webView)
+        FileSystem.registerMethods(self, webView: self.webView)
+        Menu.registerMethods(self, webView: self.webView)
         ProcessInfo.registerMethods(self, webView: self.webView)
         UserDefaults.registerMethods(self, webView: self.webView)
         Workspace.registerMethods(self, webView: self.webView)
         
-        // FileSystem API
         
         // Menu API
         
