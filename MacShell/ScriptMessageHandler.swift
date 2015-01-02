@@ -23,12 +23,8 @@ class ScriptMessageHandler : NSObject, WKScriptMessageHandler {
         Menu.registerMethods(self, webView: self.webView)
         ProcessInfo.registerMethods(self, webView: self.webView)
         UserDefaults.registerMethods(self, webView: self.webView)
+        Tray.registerMethods(self, webView: self.webView)
         Workspace.registerMethods(self, webView: self.webView)
-        
-        
-        // Menu API
-        
-        // Tray API
     }
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {

@@ -24,6 +24,7 @@
 		17F196711A56938900733ADB /* Dock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F196701A56938900733ADB /* Dock.swift */; };
 		17F196731A56948200733ADB /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F196721A56948200733ADB /* FileSystem.swift */; };
 		17F196751A5694D000733ADB /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F196741A5694D000733ADB /* Menu.swift */; };
+		17F196771A56953B00733ADB /* Tray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F196761A56953B00733ADB /* Tray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		17F196701A56938900733ADB /* Dock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dock.swift; path = API/Dock.swift; sourceTree = "<group>"; };
 		17F196721A56948200733ADB /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileSystem.swift; path = API/FileSystem.swift; sourceTree = "<group>"; };
 		17F196741A5694D000733ADB /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = API/Menu.swift; sourceTree = "<group>"; };
+		17F196761A56953B00733ADB /* Tray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tray.swift; path = API/Tray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,10 +159,11 @@
 				17E5DFDA1A55BD78000E37ED /* CurrentUser.swift */,
 				17F196701A56938900733ADB /* Dock.swift */,
 				17F196721A56948200733ADB /* FileSystem.swift */,
+				17F196741A5694D000733ADB /* Menu.swift */,
 				17E5DFD81A55BC2C000E37ED /* ProcessInfo.swift */,
+				17F196761A56953B00733ADB /* Tray.swift */,
 				17F1966E1A5692EA00733ADB /* UserDefaults.swift */,
 				17E5DFD41A55B99F000E37ED /* Workspace.swift */,
-				17F196741A5694D000733ADB /* Menu.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				17F196751A5694D000733ADB /* Menu.swift in Sources */,
 				17D915D21A51D434007DDB2B /* ViewController.swift in Sources */,
 				17F196731A56948200733ADB /* FileSystem.swift in Sources */,
+				17F196771A56953B00733ADB /* Tray.swift in Sources */,
 				17E5DFDB1A55BD78000E37ED /* CurrentUser.swift in Sources */,
 				17F196711A56938900733ADB /* Dock.swift in Sources */,
 				17D915D01A51D434007DDB2B /* AppDelegate.swift in Sources */,
