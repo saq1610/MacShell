@@ -12,15 +12,23 @@ import WebKit
 class Dock: NSObject, APIPackage {
     func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "setDockTileBadge")
+        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "clearDockTileBadge")
     }
     
     func processMessage(message: WKScriptMessage) {
         switch (message.name) {
         case "setDockTileBadge":
-            NSApplication.sharedApplication().dockTile.badgeLabel = ((message.body as NSDictionary).valueForKey("label") as String)
+            setDockTileBadge((message.body as NSDictionary).valueForKey("label") as String)
+            break
+        case "clearDockTileBadge":
+            setDockTileBadge("")
             break
         default:
             break
         }
+    }
+    
+    func setDockTileBadge(label: String) {
+        NSApplication.sharedApplication().dockTile.badgeLabel = label
     }
 }
