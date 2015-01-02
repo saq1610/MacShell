@@ -18,13 +18,21 @@ class CurrentUser: NSObject, APIPackage {
     func processMessage(message: WKScriptMessage) {
         switch (message.name) {
         case "getUserName":
-            message.webView?.evaluateJavaScript("console.log('\(NSUserName())')", completionHandler: nil)
+            message.webView?.evaluateJavaScript("console.log('\(getUserName())')", completionHandler: nil)
             break
         case "getFullUserName":
-            message.webView?.evaluateJavaScript("console.log('\(NSFullUserName())')", completionHandler: nil)
+            message.webView?.evaluateJavaScript("console.log('\(getFullUserName())')", completionHandler: nil)
             break
         default:
             break
         }
+    }
+    
+    func getUserName() -> String {
+        return NSUserName()
+    }
+    
+    func getFullUserName() -> String {
+        return NSFullUserName()
     }
 }
