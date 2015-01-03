@@ -18,30 +18,8 @@ class UserDefaults: NSObject, APIPackage {
     func processMessage(message: WKScriptMessage) {
         switch (message.name) {
         case "getUserDefault":
-            var info = message.body as NSDictionary
-            var type: AnyObject? = info.valueForKey("type")
-            var key: String = info.valueForKey("key") as String
-            var result: String?
-            switch (type as String) {
-            case "bool":
-                result = NSUserDefaults.standardUserDefaults().boolForKey(key).description
-                break
-            case "double":
-                result = NSUserDefaults.standardUserDefaults().doubleForKey(key).description
-                break
-            case "dictionary":
-                result = NSUserDefaults.standardUserDefaults().dictionaryForKey(key)?.description
-                break
-            case "int":
-                result = NSUserDefaults.standardUserDefaults().integerForKey(key).description
-                break
-            case "string":
-                result = NSUserDefaults.standardUserDefaults().stringForKey(key)
-                break
-            default:
-                break
-            }
-            message.webView?.evaluateJavaScript("console.log('\(result)')", completionHandler: nil)
+            var result: AnyObject = getUserDefault(message.body as String)
+            message.webView?.evaluateJavaScript("console.log('\(result.description)')", completionHandler: nil)
             break
         case "setUserDefault":
             var info = message.body as NSDictionary
@@ -53,6 +31,14 @@ class UserDefaults: NSObject, APIPackage {
             break
         default:
             break
+        }
+    }
+    
+    func getUserDefault(key: String) -> AnyObject {
+        if (NSUserDefaults.standardUserDefaults().valueForKey(key) != nil) {
+            return NSUserDefaults.standardUserDefaults().valueForKey(key)!
+        } else {
+            return NSNull()
         }
     }
 }
