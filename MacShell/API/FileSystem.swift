@@ -14,6 +14,7 @@ class FileSystem: NSObject, APIPackage {
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "doesFileExist")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "isDirectory")
         webView.configuration.userContentController.addScriptMessageHandler(handler, name: "moveItem")
+        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "removeItem")
     }
     
     func processMessage(message: WKScriptMessage) {
@@ -40,10 +41,18 @@ class FileSystem: NSObject, APIPackage {
             }
             break
             
+        case "removeItem":
+            var path: String? = message.body as? String
+            if (path != nil) {
+                message.webView?.evaluateJavaScript("console.log('\(removeItem(path!))')", completionHandler: nil)
+            }
+            break
+            
         default:
             break
         }
     }
+    
     
     func doesFileExist(path: String) -> Bool {
         return NSFileManager.defaultManager().fileExistsAtPath(path)
@@ -57,5 +66,9 @@ class FileSystem: NSObject, APIPackage {
     
     func moveItem(fromPath: String, toPath: String) -> Bool {
         return NSFileManager.defaultManager().moveItemAtPath(fromPath, toPath: toPath, error: nil)
+    }
+    
+    func removeItem(path: String) -> Bool {
+        return NSFileManager.defaultManager().removeItemAtPath(path, error: nil)
     }
 }
