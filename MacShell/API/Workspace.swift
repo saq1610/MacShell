@@ -20,30 +20,42 @@ class Workspace: NSObject, APIPackage {
     func processMessage(message: WKScriptMessage) {
         switch (message.name) {
         case "getRunningApplications":
-            var runningApps = NSWorkspace.sharedWorkspace().runningApplications
-            var result = "["
-            var appNumber = 0
-            for runningApp in runningApps {
-                if appNumber > 0 { result += "," }
-                appNumber++
-                result += "{"
-                result += "\"name\":\"\((runningApp as NSRunningApplication).localizedName!)\","
-                result += "\"bundleUrl\":\"\((runningApp as NSRunningApplication).bundleURL!)\","
-                result += "\"pid\":\((runningApp as NSRunningApplication).processIdentifier),"
-                result += "\"bundleIdentifier\":\"\((runningApp as NSRunningApplication).bundleIdentifier!)\""
-                result += "}"
-            }
-            result += "]"
-            message.webView?.evaluateJavaScript("console.log(JSON.parse('\(result)'))", completionHandler: nil)
+            message.webView?.evaluateJavaScript("console.log(JSON.parse('\(getRunningApplications())'))", completionHandler: nil)
             break
         case "hideOtherApplications":
-            NSWorkspace.sharedWorkspace().hideOtherApplications()
+            hideOtherApplications()
             break
         case "launchApplication":
-            NSWorkspace.sharedWorkspace().launchApplication(message.body as String)
+            launchApplication(message.body as String)
             break
         default:
             break
         }
+    }
+    
+    func getRunningApplications() -> String {
+        var runningApps = NSWorkspace.sharedWorkspace().runningApplications
+        var result = "["
+        var appNumber = 0
+        for runningApp in runningApps {
+            if appNumber > 0 { result += "," }
+            appNumber++
+            result += "{"
+            result += "\"name\":\"\((runningApp as NSRunningApplication).localizedName!)\","
+            result += "\"bundleUrl\":\"\((runningApp as NSRunningApplication).bundleURL!)\","
+            result += "\"pid\":\((runningApp as NSRunningApplication).processIdentifier),"
+            result += "\"bundleIdentifier\":\"\((runningApp as NSRunningApplication).bundleIdentifier!)\""
+            result += "}"
+        }
+        result += "]"
+        return result
+    }
+    
+    func hideOtherApplications() {
+        NSWorkspace.sharedWorkspace().hideOtherApplications()
+    }
+    
+    func launchApplication(name: String) {
+        NSWorkspace.sharedWorkspace().launchApplication(name)
     }
 }
