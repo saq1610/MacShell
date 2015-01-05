@@ -18,15 +18,16 @@ class UserDefaults: NSObject, APIPackage {
     func processMessage(message: WKScriptMessage) {
         switch message.name {
         case "getUserDefault":
-            var result: AnyObject = getUserDefault(message.body as String)
-            message.webView?.evaluateJavaScript("console.log('\(result.description)')", completionHandler: nil)
+            if let key: String = message.body as? String {
+                message.webView?.evaluateJavaScript("console.log('\(getUserDefault(key).description)')", completionHandler: nil)
+            }
             break
         case "setUserDefault":
-            var info = message.body as NSDictionary
-            var key: String? = info.valueForKey("key") as? String
-            var value: AnyObject? = info.valueForKey("value")
-            if key != nil && value != nil {
-                setUserDefault(key!, value: value!)
+            let info = message.body as NSDictionary
+            if let key = info.valueForKey("key") as? String {
+                if let value: AnyObject = info.valueForKey("value") {
+                    setUserDefault(key, value: value)
+                }
             }
             break
         default:
