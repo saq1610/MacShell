@@ -34,11 +34,13 @@ class Workspace: NSObject, APIPackage {
     }
     
     func getRunningApplications() -> String {
-        var runningApps = NSWorkspace.sharedWorkspace().runningApplications
+        let runningApps = NSWorkspace.sharedWorkspace().runningApplications
         var result = "["
         var appNumber = 0
         for runningApp in runningApps {
-            if appNumber > 0 { result += "," }
+            if appNumber > 0 {
+                result += ","
+            }
             appNumber++
             result += "{"
             result += "\"name\":\"\((runningApp as NSRunningApplication).localizedName!)\","

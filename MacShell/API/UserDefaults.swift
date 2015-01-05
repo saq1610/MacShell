@@ -23,10 +23,11 @@ class UserDefaults: NSObject, APIPackage {
             }
             break
         case "setUserDefault":
-            let info = message.body as NSDictionary
-            if let key = info.valueForKey("key") as? String {
-                if let value: AnyObject = info.valueForKey("value") {
-                    setUserDefault(key, value: value)
+            if let info = message.body as? NSDictionary {
+                if let key = info.valueForKey("key") as? String {
+                    if let value: AnyObject = info.valueForKey("value") {
+                        setUserDefault(key, value: value)
+                    }
                 }
             }
             break
