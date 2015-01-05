@@ -16,7 +16,7 @@ class CurrentUser: NSObject, APIPackage {
     }
     
     func processMessage(message: WKScriptMessage) {
-        switch (message.name) {
+        switch message.name {
         case "getUserName":
             message.webView?.evaluateJavaScript("console.log('\(getUserName())')", completionHandler: nil)
             break

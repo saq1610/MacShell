@@ -18,7 +18,7 @@ class Workspace: NSObject, APIPackage {
     }
     
     func processMessage(message: WKScriptMessage) {
-        switch (message.name) {
+        switch message.name {
         case "getRunningApplications":
             message.webView?.evaluateJavaScript("console.log(JSON.parse('\(getRunningApplications())'))", completionHandler: nil)
             break

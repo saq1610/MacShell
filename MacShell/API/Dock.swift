@@ -16,7 +16,7 @@ class Dock: NSObject, APIPackage {
     }
     
     func processMessage(message: WKScriptMessage) {
-        switch (message.name) {
+        switch message.name {
         case "setDockTileBadge":
             setDockTileBadge((message.body as NSDictionary).valueForKey("label") as String)
             break

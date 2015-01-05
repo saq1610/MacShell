@@ -23,7 +23,7 @@ class ProcessInfo: NSObject, APIPackage {
     }
     
     func processMessage(message: WKScriptMessage) {
-        switch (message.name) {
+        switch message.name {
         case "getProcessName":
             message.webView?.evaluateJavaScript("console.log('\(processName)')", completionHandler: nil)
             break

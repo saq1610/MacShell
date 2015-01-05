@@ -16,7 +16,7 @@ class UserDefaults: NSObject, APIPackage {
     }
     
     func processMessage(message: WKScriptMessage) {
-        switch (message.name) {
+        switch message.name {
         case "getUserDefault":
             var result: AnyObject = getUserDefault(message.body as String)
             message.webView?.evaluateJavaScript("console.log('\(result.description)')", completionHandler: nil)
@@ -25,7 +25,7 @@ class UserDefaults: NSObject, APIPackage {
             var info = message.body as NSDictionary
             var key: String? = info.valueForKey("key") as? String
             var value: AnyObject? = info.valueForKey("value")
-            if (key != nil && value != nil) {
+            if key != nil && value != nil {
                 setUserDefault(key!, value: value!)
             }
             break
@@ -39,7 +39,7 @@ class UserDefaults: NSObject, APIPackage {
     }
     
     func getUserDefault(key: String) -> AnyObject {
-        if (NSUserDefaults.standardUserDefaults().valueForKey(key) != nil) {
+        if NSUserDefaults.standardUserDefaults().valueForKey(key) != nil {
             return NSUserDefaults.standardUserDefaults().valueForKey(key)!
         } else {
             return NSNull()
