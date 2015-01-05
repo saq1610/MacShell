@@ -11,10 +11,27 @@ import WebKit
 
 class Menu: NSObject, APIPackage {
     func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
-        
+        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "buildMenuFromTemplate")
     }
     
     func processMessage(message: WKScriptMessage) {
-        
+        switch message.name {
+        case "buildMenuFromTemplate":
+            buildMenuFromTemplate(message.body as Array<AnyObject>)
+            
+        default:
+            break
+        }
+    }
+    
+    /*
+        template: [entries]
+        entries: entry+
+        entry: { label: string, submenu: entry?, accelerator: string }
+    */
+    func buildMenuFromTemplate(template: Array<AnyObject>) {
+        println("build menu from template: \(template.description)")
+        let label: AnyObject? = (template[0] as NSDictionary).valueForKey("label")
+        println("First \(label)")
     }
 }

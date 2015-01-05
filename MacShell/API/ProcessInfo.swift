@@ -26,33 +26,33 @@ class ProcessInfo: NSObject, APIPackage {
         switch message.name {
         case "getProcessName":
             message.webView?.evaluateJavaScript("console.log('\(processName)')", completionHandler: nil)
-            break
+            
         case "getProcessIdentifier":
             message.webView?.evaluateJavaScript("console.log(\(processIdentifier))", completionHandler: nil)
-            break
+            
         case "getProcessorCount":
             message.webView?.evaluateJavaScript("console.log(\(processorCount))", completionHandler: nil)
-            break
+            
         case "getActiveProcessorCount":
             message.webView?.evaluateJavaScript("console.log(\(activeProcessorCount))", completionHandler: nil)
-            break
+            
         case "getHostName":
             message.webView?.evaluateJavaScript("console.log('\(hostName)')", completionHandler: nil)
-            break
+            
         case "getOperatingSystemVersion":
             let osVersion = NSProcessInfo.processInfo().operatingSystemVersion
             let osVersionString = "{\"major\":\(osVersion.majorVersion),\"minor\":\(osVersion.minorVersion),\"patch\":\(osVersion.patchVersion)}";
             message.webView?.evaluateJavaScript("console.log(JSON.parse('\(osVersionString)'))", completionHandler: nil)
-            break;
+            
         case "getPhysicalMemory":
             message.webView?.evaluateJavaScript("console.log(\(physicalMemory))", completionHandler: nil)
-            break
+            
         case "getSystemUptime":
             message.webView?.evaluateJavaScript("console.log(\(systemUptime))", completionHandler: nil)
-            break
+            
         case "getGloballyUniqueString":
             message.webView?.evaluateJavaScript("console.log('\(globallyUniqueString)')", completionHandler: nil)
-            break
+            
         default:
             break
         }
