@@ -40,8 +40,8 @@ class ProcessInfo: NSObject, APIPackage {
             message.webView?.evaluateJavaScript("console.log('\(hostName)')", completionHandler: nil)
             break
         case "getOperatingSystemVersion":
-            var osVersion = NSProcessInfo.processInfo().operatingSystemVersion
-            var osVersionString = "{\"major\":\(osVersion.majorVersion),\"minor\":\(osVersion.minorVersion),\"patch\":\(osVersion.patchVersion)}";
+            let osVersion = NSProcessInfo.processInfo().operatingSystemVersion
+            let osVersionString = "{\"major\":\(osVersion.majorVersion),\"minor\":\(osVersion.minorVersion),\"patch\":\(osVersion.patchVersion)}";
             message.webView?.evaluateJavaScript("console.log(JSON.parse('\(osVersionString)'))", completionHandler: nil)
             break;
         case "getPhysicalMemory":
