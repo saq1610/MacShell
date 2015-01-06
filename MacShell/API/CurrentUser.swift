@@ -31,10 +31,10 @@ extension CurrentUser: WKScriptMessageHandler {
         switch message.name {
         case "getUserName":
             message.webView?.evaluateJavaScript("console.log('\(getUserName())')", completionHandler: nil)
-            break
+            
         case "getFullUserName":
             message.webView?.evaluateJavaScript("console.log('\(getFullUserName())')", completionHandler: nil)
-            break
+            
         default:
             break
         }

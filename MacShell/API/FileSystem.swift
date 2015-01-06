@@ -46,13 +46,11 @@ extension FileSystem: WKScriptMessageHandler {
             if path != nil {
                 message.webView?.evaluateJavaScript("console.log('\(doesFileExist(path!))')", completionHandler: nil)
             }
-            break
             
         case "isDirectory":
             if let path = message.body as? String {
                 message.webView?.evaluateJavaScript("console.log('\(isDirectory(path))')", completionHandler: nil)
             }
-            break
             
         case "moveItem":
             let fromPath: String? = (message.body as NSDictionary).valueForKey("from") as? String
@@ -60,14 +58,12 @@ extension FileSystem: WKScriptMessageHandler {
             if fromPath != nil && toPath != nil {
                 message.webView?.evaluateJavaScript("console.log('\(moveItem(fromPath!, toPath: toPath!))')", completionHandler: nil)
             }
-            break
             
         case "removeItem":
             var path: String? = message.body as? String
             if path != nil {
                 message.webView?.evaluateJavaScript("console.log('\(removeItem(path!))')", completionHandler: nil)
             }
-            break
             
         default:
             break

@@ -27,10 +27,10 @@ extension Dock: WKScriptMessageHandler {
         switch message.name {
         case "setDockTileBadge":
             setDockTileBadge((message.body as NSDictionary).valueForKey("label") as String)
-            break
+            
         case "clearDockTileBadge":
             setDockTileBadge("")
-            break
+            
         default:
             break
         }

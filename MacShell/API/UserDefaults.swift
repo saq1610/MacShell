@@ -37,7 +37,7 @@ extension UserDefaults: WKScriptMessageHandler {
             if let key: String = message.body as? String {
                 message.webView?.evaluateJavaScript("console.log('\(getUserDefault(key).description)')", completionHandler: nil)
             }
-            break
+            
         case "setUserDefault":
             if let info = message.body as? NSDictionary {
                 if let key = info.valueForKey("key") as? String {
@@ -46,7 +46,7 @@ extension UserDefaults: WKScriptMessageHandler {
                     }
                 }
             }
-            break
+            
         default:
             break
         }
