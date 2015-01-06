@@ -10,14 +10,36 @@ import Foundation
 import WebKit
 
 class FileSystem: NSObject, APIPackage {
-    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "doesFileExist")
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "isDirectory")
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "moveItem")
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "removeItem")
+    func doesFileExist(path: String) -> Bool {
+        return NSFileManager.defaultManager().fileExistsAtPath(path)
     }
     
-    func processMessage(message: WKScriptMessage) {
+    func isDirectory(path: String) -> Bool {
+        var isDir = ObjCBool(false)
+        NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory: &isDir)
+        return isDir.boolValue
+    }
+    
+    func moveItem(fromPath: String, toPath: String) -> Bool {
+        return NSFileManager.defaultManager().moveItemAtPath(fromPath, toPath: toPath, error: nil)
+    }
+    
+    func removeItem(path: String) -> Bool {
+        return NSFileManager.defaultManager().removeItemAtPath(path, error: nil)
+    }
+}
+
+extension FileSystem: APIPackage {
+    func registerMethods(webView: WKWebView) {
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "doesFileExist")
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "isDirectory")
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "moveItem")
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "removeItem")
+    }
+}
+
+extension FileSystem: WKScriptMessageHandler {
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         switch message.name {
         case "doesFileExist":
             var path: String? = message.body as? String
@@ -25,7 +47,7 @@ class FileSystem: NSObject, APIPackage {
                 message.webView?.evaluateJavaScript("console.log('\(doesFileExist(path!))')", completionHandler: nil)
             }
             break
-        
+            
         case "isDirectory":
             if let path = message.body as? String {
                 message.webView?.evaluateJavaScript("console.log('\(isDirectory(path))')", completionHandler: nil)
@@ -50,24 +72,5 @@ class FileSystem: NSObject, APIPackage {
         default:
             break
         }
-    }
-    
-    
-    func doesFileExist(path: String) -> Bool {
-        return NSFileManager.defaultManager().fileExistsAtPath(path)
-    }
-    
-    func isDirectory(path: String) -> Bool {
-        var isDir = ObjCBool(false)
-        NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory: &isDir)
-        return isDir.boolValue
-    }
-    
-    func moveItem(fromPath: String, toPath: String) -> Bool {
-        return NSFileManager.defaultManager().moveItemAtPath(fromPath, toPath: toPath, error: nil)
-    }
-    
-    func removeItem(path: String) -> Bool {
-        return NSFileManager.defaultManager().removeItemAtPath(path, error: nil)
     }
 }

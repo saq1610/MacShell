@@ -10,29 +10,6 @@ import Foundation
 import WebKit
 
 class Workspace: NSObject, APIPackage {
-    
-    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getRunningApplications")
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "hideOtherApplications")
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "launchApplication")
-    }
-    
-    func processMessage(message: WKScriptMessage) {
-        switch message.name {
-        case "getRunningApplications":
-            message.webView?.evaluateJavaScript("console.log(JSON.parse('\(getRunningApplications())'))", completionHandler: nil)
-            break
-        case "hideOtherApplications":
-            hideOtherApplications()
-            break
-        case "launchApplication":
-            launchApplication(message.body as String)
-            break
-        default:
-            break
-        }
-    }
-    
     func getRunningApplications() -> String {
         let runningApps = NSWorkspace.sharedWorkspace().runningApplications
         var result = "["
@@ -59,5 +36,31 @@ class Workspace: NSObject, APIPackage {
     
     func launchApplication(name: String) {
         NSWorkspace.sharedWorkspace().launchApplication(name)
+    }
+}
+
+extension Workspace: APIPackage {
+    func registerMethods(webView: WKWebView) {
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "getRunningApplications")
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "hideOtherApplications")
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "launchApplication")
+    }
+}
+
+extension Workspace: WKScriptMessageHandler {
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        switch message.name {
+        case "getRunningApplications":
+            message.webView?.evaluateJavaScript("console.log(JSON.parse('\(getRunningApplications())'))", completionHandler: nil)
+            
+        case "hideOtherApplications":
+            hideOtherApplications()
+            
+        case "launchApplication":
+            launchApplication(message.body as String)
+            
+        default:
+            break
+        }
     }
 }

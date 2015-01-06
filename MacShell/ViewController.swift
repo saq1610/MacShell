@@ -16,14 +16,14 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.webView = WKWebView(frame: self.view.frame)
+        webView = WKWebView(frame: self.view.frame)
         self.view.addSubview(self.webView)
         self.webView.autoresizingMask = NSAutoresizingMaskOptions.ViewHeightSizable | NSAutoresizingMaskOptions.ViewWidthSizable
         self.view.addConstraint(NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
         
         
-        ScriptMessageHandler(webView: self.webView).publishAPIToWebView()
+        registerAPIs(webView)
         
         self.webView.configuration.preferences.enableDevExtras()
         

@@ -10,11 +10,20 @@ import Foundation
 import WebKit
 
 class Tray: NSObject, APIPackage {
-    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
+
+}
+
+extension Tray: APIPackage {
+    func registerMethods(webView: WKWebView) {
         
     }
-    
-    func processMessage(message: WKScriptMessage) {
-        
+}
+
+extension Tray: WKScriptMessageHandler {
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        switch message.name {
+        default:
+            break
+        }
     }
 }

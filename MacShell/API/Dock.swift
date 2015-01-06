@@ -9,13 +9,21 @@
 import Foundation
 import WebKit
 
-class Dock: NSObject, APIPackage {
-    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "setDockTileBadge")
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "clearDockTileBadge")
+class Dock: NSObject {
+    func setDockTileBadge(label: String) {
+        NSApplication.sharedApplication().dockTile.badgeLabel = label
     }
-    
-    func processMessage(message: WKScriptMessage) {
+}
+
+extension Dock: APIPackage {
+    func registerMethods(webView: WKWebView) {
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "setDockTileBadge")
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "clearDockTileBadge")
+    }
+}
+
+extension Dock: WKScriptMessageHandler {
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         switch message.name {
         case "setDockTileBadge":
             setDockTileBadge((message.body as NSDictionary).valueForKey("label") as String)
@@ -26,9 +34,5 @@ class Dock: NSObject, APIPackage {
         default:
             break
         }
-    }
-    
-    func setDockTileBadge(label: String) {
-        NSApplication.sharedApplication().dockTile.badgeLabel = label
     }
 }

@@ -10,6 +10,16 @@ import Foundation
 import WebKit
 
 protocol APIPackage {
-    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView)
-    func processMessage(message: WKScriptMessage)
+    func registerMethods(webView: WKWebView)
+}
+
+func registerAPIs(webView: WKWebView) {
+    CurrentUser().registerMethods(webView)
+    Dock().registerMethods(webView)
+    FileSystem().registerMethods(webView)
+    Menu().registerMethods(webView)
+    ProcessInfo().registerMethods(webView)
+    Tray().registerMethods(webView)
+    UserDefaults().registerMethods(webView)
+    Workspace().registerMethods(webView)
 }

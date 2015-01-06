@@ -9,13 +9,25 @@
 import Foundation
 import WebKit
 
-class CurrentUser: NSObject, APIPackage {
-    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getUserName")
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "getFullUserName")
+class CurrentUser: NSObject {
+    func getUserName() -> String {
+        return NSUserName()
     }
     
-    func processMessage(message: WKScriptMessage) {
+    func getFullUserName() -> String {
+        return NSFullUserName()
+    }
+}
+
+extension CurrentUser: APIPackage {
+    func registerMethods(webView: WKWebView) {
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "getUserName")
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "getFullUserName")
+    }
+}
+
+extension CurrentUser: WKScriptMessageHandler {
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         switch message.name {
         case "getUserName":
             message.webView?.evaluateJavaScript("console.log('\(getUserName())')", completionHandler: nil)
@@ -26,13 +38,5 @@ class CurrentUser: NSObject, APIPackage {
         default:
             break
         }
-    }
-    
-    func getUserName() -> String {
-        return NSUserName()
-    }
-    
-    func getFullUserName() -> String {
-        return NSFullUserName()
     }
 }

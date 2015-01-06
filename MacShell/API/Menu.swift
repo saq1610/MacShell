@@ -9,21 +9,7 @@
 import Foundation
 import WebKit
 
-class Menu: NSObject, APIPackage {
-    func registerMethods(handler: WKScriptMessageHandler, webView: WKWebView) {
-        webView.configuration.userContentController.addScriptMessageHandler(handler, name: "buildMenuFromTemplate")
-    }
-    
-    func processMessage(message: WKScriptMessage) {
-        switch message.name {
-        case "buildMenuFromTemplate":
-            buildMenuFromTemplate(message.body as Array<AnyObject>)
-            
-        default:
-            break
-        }
-    }
-    
+class Menu: NSObject {
     /*
         template: [entries]
         entries: entry+
@@ -33,5 +19,23 @@ class Menu: NSObject, APIPackage {
         println("build menu from template: \(template.description)")
         let label: AnyObject? = (template[0] as NSDictionary).valueForKey("label")
         println("First \(label)")
+    }
+}
+
+extension Menu: APIPackage {
+    func registerMethods(webView: WKWebView) {
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "buildMenuFromTemplate")
+    }
+}
+
+extension Menu: WKScriptMessageHandler {
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        switch message.name {
+        case "buildMenuFromTemplate":
+            buildMenuFromTemplate(message.body as Array<AnyObject>)
+            
+        default:
+            break
+        }
     }
 }

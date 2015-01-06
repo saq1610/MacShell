@@ -13,7 +13,6 @@
 		17D915D71A51D434007DDB2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17D915D51A51D434007DDB2B /* Main.storyboard */; };
 		17D915E31A51D434007DDB2B /* MacShellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D915E21A51D434007DDB2B /* MacShellTests.swift */; };
 		17D915F11A51D9F3007DDB2B /* WKPreferences+DevExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D915F01A51D9F3007DDB2B /* WKPreferences+DevExtras.m */; };
-		17D915F31A51DD9B007DDB2B /* ScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D915F21A51DD9B007DDB2B /* ScriptMessageHandler.swift */; };
 		17D915F61A51E480007DDB2B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 17D915F51A51E480007DDB2B /* index.html */; };
 		17D915F81A51E4DF007DDB2B /* macshell.css in Resources */ = {isa = PBXBuildFile; fileRef = 17D915F71A51E4DF007DDB2B /* macshell.css */; };
 		17E5DFD51A55B99F000E37ED /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5DFD41A55B99F000E37ED /* Workspace.swift */; };
@@ -50,7 +49,6 @@
 		17D915EE1A51D992007DDB2B /* WKPreferences+DevExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKPreferences+DevExtras.h"; sourceTree = "<group>"; };
 		17D915EF1A51D9F3007DDB2B /* MacShell-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacShell-Bridging-Header.h"; sourceTree = "<group>"; };
 		17D915F01A51D9F3007DDB2B /* WKPreferences+DevExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKPreferences+DevExtras.m"; sourceTree = "<group>"; };
-		17D915F21A51DD9B007DDB2B /* ScriptMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandler.swift; sourceTree = "<group>"; };
 		17D915F51A51E480007DDB2B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		17D915F71A51E4DF007DDB2B /* macshell.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = macshell.css; sourceTree = "<group>"; };
 		17E5DFD41A55B99F000E37ED /* Workspace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Workspace.swift; path = API/Workspace.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 				17D915D31A51D434007DDB2B /* Images.xcassets */,
 				17D915D51A51D434007DDB2B /* Main.storyboard */,
 				17D915CD1A51D434007DDB2B /* Supporting Files */,
-				17D915F21A51DD9B007DDB2B /* ScriptMessageHandler.swift */,
 			);
 			path = MacShell;
 			sourceTree = "<group>";
@@ -270,7 +267,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				17D915F11A51D9F3007DDB2B /* WKPreferences+DevExtras.m in Sources */,
-				17D915F31A51DD9B007DDB2B /* ScriptMessageHandler.swift in Sources */,
 				17E5DFD51A55B99F000E37ED /* Workspace.swift in Sources */,
 				17E5DFD91A55BC2C000E37ED /* ProcessInfo.swift in Sources */,
 				17E5DFD71A55BACA000E37ED /* APIPackage.swift in Sources */,
