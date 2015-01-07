@@ -1,7 +1,7 @@
 MacShell
 ========
 
-Web Application Shell for Mac OS X.
+Web Application Shell for Mac OS X. Currently in **alpha**
 
 MacShell uses the new WKWebView that shipped with OS XYosemite (10.10).
 
