@@ -11,6 +11,12 @@ MacShell is written in Swift, so it should be easy for web developers to underst
 
 ### APIs
 
-##### Workspace
+#### CurrentUser
 
-##### ProcessInfo
+#### ProcessInfo
+
+#### UserDefaults
+
+#### Workspace
+
+
