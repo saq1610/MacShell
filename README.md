@@ -13,6 +13,10 @@ MacShell is written in Swift, so it should be easy for web developers to underst
 
 #### CurrentUser
 
+#### Dock
+
+#### FileSystem
+
 #### ProcessInfo
 
 #### UserDefaults
