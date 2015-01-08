@@ -25,12 +25,14 @@ class ViewController: NSViewController {
         
         registerAPIs(webView)
         
+        // WebKit Inspector
         webView.configuration.preferences.enableDevExtras()
         
+        // load web application
         webView.loadRequest(NSURLRequest(URL: NSURL(fileURLWithPath: NSBundle.mainBundle().resourcePath! + "/index.html")!))
 
         
-        // application menu
+        // application menu stub
         NSApplication.sharedApplication().mainMenu?.addItem(NSMenuItem())
         NSApplication.sharedApplication().mainMenu?.itemAtIndex(0)?.submenu = NSMenu()
         NSApplication.sharedApplication().mainMenu?.itemAtIndex(0)?.submenu?.addItem(NSMenuItem(title: "About MacShell", action: "aboutWindow", keyEquivalent: ""))
