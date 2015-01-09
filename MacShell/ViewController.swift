@@ -30,14 +30,14 @@ class ViewController: NSViewController {
         
         // load web application
         webView.loadRequest(NSURLRequest(URL: NSURL(fileURLWithPath: NSBundle.mainBundle().resourcePath! + "/index.html")!))
-
         
         // application menu stub
+        
         if let mainMenu = NSApplication.sharedApplication().mainMenu {
             mainMenu.addItem(NSMenuItem())
-            if let appMenu = mainMenu.itemAtIndex(0) {
-                appMenu.submenu = NSMenu()
-                if let appMenu = appMenu.submenu {
+            if let appMenuItem = mainMenu.itemAtIndex(0) {
+                appMenuItem.submenu = NSMenu()
+                if let appMenu = appMenuItem.submenu {
                     appMenu.addItem(NSMenuItem(title: "About MacShell", action: "aboutWindow", keyEquivalent: ""))
                     appMenu.addItem(NSMenuItem.separatorItem())
                     appMenu.addItem(NSMenuItem(title: "Preferences", action: "preferencesWindow", keyEquivalent: ""))
@@ -57,7 +57,7 @@ class ViewController: NSViewController {
             
             var fileMenuItem = NSMenuItem()
             fileMenuItem.submenu = fileMenu
-            NSApplication.sharedApplication().mainMenu?.addItem(fileMenuItem)
+            mainMenu.addItem(fileMenuItem)
         }
     }
     
