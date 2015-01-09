@@ -33,26 +33,32 @@ class ViewController: NSViewController {
 
         
         // application menu stub
-        NSApplication.sharedApplication().mainMenu?.addItem(NSMenuItem())
-        NSApplication.sharedApplication().mainMenu?.itemAtIndex(0)?.submenu = NSMenu()
-        NSApplication.sharedApplication().mainMenu?.itemAtIndex(0)?.submenu?.addItem(NSMenuItem(title: "About MacShell", action: "aboutWindow", keyEquivalent: ""))
-        NSApplication.sharedApplication().mainMenu?.itemAtIndex(0)?.submenu?.addItem(NSMenuItem.separatorItem())
-        NSApplication.sharedApplication().mainMenu?.itemAtIndex(0)?.submenu?.addItem(NSMenuItem(title: "Preferences", action: "preferencesWindow", keyEquivalent: ""))
-        
-        var fileMenu = NSMenu(title: "File_2")
-        var fileNewItem = NSMenuItem(title: "New", action: "fileMenu_New", keyEquivalent: "g")
-        fileNewItem.keyEquivalentModifierMask = Int(NSEventModifierFlags.ControlKeyMask.rawValue)
-        fileMenu.addItem(fileNewItem)
-        
-        fileMenu.addItem(NSMenuItem.separatorItem())
-        
-        var fileOpenItem = NSMenuItem(title: "Open", action: "fileMenu_Open", keyEquivalent: "o")
-        fileOpenItem.keyEquivalentModifierMask = Int(NSEventModifierFlags.CommandKeyMask.rawValue)
-        fileMenu.addItem(fileOpenItem)
-        
-        var fileMenuItem = NSMenuItem()
-        fileMenuItem.submenu = fileMenu
-        NSApplication.sharedApplication().mainMenu?.addItem(fileMenuItem)
+        if let mainMenu = NSApplication.sharedApplication().mainMenu {
+            mainMenu.addItem(NSMenuItem())
+            if let appMenu = mainMenu.itemAtIndex(0) {
+                appMenu.submenu = NSMenu()
+                if let appMenu = appMenu.submenu {
+                    appMenu.addItem(NSMenuItem(title: "About MacShell", action: "aboutWindow", keyEquivalent: ""))
+                    appMenu.addItem(NSMenuItem.separatorItem())
+                    appMenu.addItem(NSMenuItem(title: "Preferences", action: "preferencesWindow", keyEquivalent: ""))
+                }
+            }
+            
+            var fileMenu = NSMenu(title: "File_2")
+            var fileNewItem = NSMenuItem(title: "New", action: "fileMenu_New", keyEquivalent: "g")
+            fileNewItem.keyEquivalentModifierMask = Int(NSEventModifierFlags.ControlKeyMask.rawValue)
+            fileMenu.addItem(fileNewItem)
+            
+            fileMenu.addItem(NSMenuItem.separatorItem())
+            
+            var fileOpenItem = NSMenuItem(title: "Open", action: "fileMenu_Open", keyEquivalent: "o")
+            fileOpenItem.keyEquivalentModifierMask = Int(NSEventModifierFlags.CommandKeyMask.rawValue)
+            fileMenu.addItem(fileOpenItem)
+            
+            var fileMenuItem = NSMenuItem()
+            fileMenuItem.submenu = fileMenu
+            NSApplication.sharedApplication().mainMenu?.addItem(fileMenuItem)
+        }
     }
     
     func fileMenu_New() {
