@@ -1,30 +1,8 @@
 MacShell
 ========
 
-Web Application Shell for Mac OS X. Currently in **alpha**
+Web Application Shell for Mac OS X. MacShell is currently in **alpha**. Features may change or be removed in future versions. Don't use MacShell in production yet!
 
-MacShell uses the new WKWebView that shipped with OS XYosemite (10.10).
+### Notes
 
-The API provides access to many functionalities typical for native OS X applications like badges in the dock, tray icons or Menu bars.
-
-MacShell is written in Swift, so it should be easy for web developers to understand most parts of the code as Swift is (unlike Objective-C) very similar to JavaScript.
-
-### APIs
-
-#### CurrentUser
-
-#### Dock
-
-#### FileSystem
-
-#### Menu
-
-#### ProcessInfo
-
-#### Tray
-
-#### UserDefaults
-
-#### Workspace
-
-
+MacShell is written in Swift. It uses the new `WKWebView` that was shipped with Yosemite.
