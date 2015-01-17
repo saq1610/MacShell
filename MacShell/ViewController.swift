@@ -30,39 +30,6 @@ class ViewController: NSViewController {
         
         // load web application
         webView.loadRequest(NSURLRequest(URL: NSURL(fileURLWithPath: NSBundle.mainBundle().resourcePath! + "/index.html")!))
-        
-        // application menu stub
-        
-        if let mainMenu = NSApplication.sharedApplication().mainMenu {
-            mainMenu.addItem(NSMenuItem())
-            if let appMenuItem = mainMenu.itemAtIndex(0) {
-                appMenuItem.submenu = NSMenu()
-                if let appMenu = appMenuItem.submenu {
-                    appMenu.addItem(NSMenuItem(title: "About MacShell", action: "aboutWindow", keyEquivalent: ""))
-                    appMenu.addItem(NSMenuItem.separatorItem())
-                    appMenu.addItem(NSMenuItem(title: "Preferences", action: "preferencesWindow", keyEquivalent: ""))
-                }
-            }
-            
-            var fileMenu = NSMenu(title: "File_2")
-            var fileNewItem = NSMenuItem(title: "New", action: "fileMenu_New", keyEquivalent: "g")
-            fileNewItem.keyEquivalentModifierMask = Int(NSEventModifierFlags.ControlKeyMask.rawValue)
-            fileMenu.addItem(fileNewItem)
-            
-            fileMenu.addItem(NSMenuItem.separatorItem())
-            
-            var fileOpenItem = NSMenuItem(title: "Open", action: "fileMenu_Open", keyEquivalent: "o")
-            fileOpenItem.keyEquivalentModifierMask = Int(NSEventModifierFlags.CommandKeyMask.rawValue)
-            fileMenu.addItem(fileOpenItem)
-            
-            var fileMenuItem = NSMenuItem()
-            fileMenuItem.submenu = fileMenu
-            mainMenu.addItem(fileMenuItem)
-        }
-    }
-    
-    func fileMenu_New() {
-        NSLog("File / New");
     }
     
     override var representedObject: AnyObject? {
