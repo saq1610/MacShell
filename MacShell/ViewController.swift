@@ -25,7 +25,7 @@ class ViewController: NSViewController {
         
         registerAPIs(webView)
         
-        // WebKit Inspector
+        // WebKit Inspector - comment out for production!
         webView.configuration.preferences.enableDevExtras()
         
         // load web application
