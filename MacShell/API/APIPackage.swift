@@ -17,4 +17,5 @@ func registerAPIs(webView: WKWebView) {
     CurrentUser().registerMethods(webView)
     ProcessInfo().registerMethods(webView)
     Workspace().registerMethods(webView)
+    Window().registerMethods(webView)
 }
