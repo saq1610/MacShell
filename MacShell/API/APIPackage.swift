@@ -14,8 +14,9 @@ protocol APIPackage {
 }
 
 func registerAPIs(webView: WKWebView) {
+    Application().registerMethods(webView)
     CurrentUser().registerMethods(webView)
     ProcessInfo().registerMethods(webView)
-    Workspace().registerMethods(webView)
     Window().registerMethods(webView)
+    Workspace().registerMethods(webView)
 }

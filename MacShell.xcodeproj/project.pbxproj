@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17CD69251A7EE9AF000F7790 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD69241A7EE9AF000F7790 /* Application.swift */; };
 		17D915D01A51D434007DDB2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D915CF1A51D434007DDB2B /* AppDelegate.swift */; };
 		17D915D21A51D434007DDB2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D915D11A51D434007DDB2B /* ViewController.swift */; };
 		17D915D41A51D434007DDB2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17D915D31A51D434007DDB2B /* Images.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17CD69241A7EE9AF000F7790 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Application.swift; path = API/Application.swift; sourceTree = "<group>"; };
 		17D915CA1A51D434007DDB2B /* MacShell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D915CE1A51D434007DDB2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17D915CF1A51D434007DDB2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				17E5DFD61A55BACA000E37ED /* APIPackage.swift */,
+				17CD69241A7EE9AF000F7790 /* Application.swift */,
 				17E5DFDA1A55BD78000E37ED /* CurrentUser.swift */,
 				17E5DFD81A55BC2C000E37ED /* ProcessInfo.swift */,
 				17E913851A7EE04900CB5FB1 /* Window.swift */,
@@ -254,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17CD69251A7EE9AF000F7790 /* Application.swift in Sources */,
 				17D915F11A51D9F3007DDB2B /* WKPreferences+DevExtras.m in Sources */,
 				17E5DFD51A55B99F000E37ED /* Workspace.swift in Sources */,
 				17E5DFD91A55BC2C000E37ED /* ProcessInfo.swift in Sources */,
