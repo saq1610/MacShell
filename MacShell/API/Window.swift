@@ -25,8 +25,13 @@ extension Window: WKScriptMessageHandler {
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         switch message.name {
         case "setWindowTitle":
-            NSLog(message.webView?.window.
-            message.webView?.evaluateJavaScript("console.log('setWindowTitle')", completionHandler: nil)
+            if let title = message.webView?.window?.title {
+                let wndTitle = message.body as String
+                setWindowTitle(message.webView?.window!, title: wndTitle)
+                message.webView?.evaluateJavaScript("console.log('setWindowTitle(\"\(wndTitle)\")')", completionHandler: nil)
+            } else {
+                message.webView?.evaluateJavaScript("console.log('setWindowTitle not possible')", completionHandler: nil)
+            }
             
         default:
             break
